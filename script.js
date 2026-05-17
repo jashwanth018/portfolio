@@ -617,3 +617,13 @@ document.addEventListener("DOMContentLoaded", function () {
     /* Run once on page load */
     updateSectionTheme();
 });
+// ==========================================
+// LOADING SCREEN
+// ==========================================
+window.addEventListener("load", () => {
+    const loader = document.getElementById("loader");
+
+    setTimeout(() => {
+        loader.classList.add("hidden");
+    }, 2000); // Show loader for 2 seconds
+});
