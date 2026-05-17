@@ -1,0 +1,3185 @@
+/* ==========================================================
+   HOME SECTION ONLY - style.css
+   Premium glassmorphism portfolio theme
+   Brighter blue-purple-cyan design with strong hover effects
+========================================================== */
+
+/* ================= ROOT VARIABLES ================= */
+:root {
+    --bg-primary: #08152f;
+    --bg-secondary: #142a5a;
+
+    --card-bg: rgba(255, 255, 255, 0.10);
+    --card-border: rgba(255, 255, 255, 0.22);
+
+    --text-primary: #ffffff;
+    --text-secondary: #dbe7ff;
+
+    --accent-1: #00d4ff;
+    --accent-2: #7c3aed;
+    --accent-3: #06b6d4;
+
+    --shadow: 0 15px 45px rgba(0, 0, 0, 0.28);
+
+    --radius: 24px;
+    --transition: all 0.35s ease;
+    --max-width: 1200px;
+}
+
+/* ================= LIGHT THEME ================= */
+body.light-theme {
+    --bg-primary: #eef4ff;
+    --bg-secondary: #ffffff;
+
+    --card-bg: rgba(255, 255, 255, 0.80);
+    --card-border: rgba(255, 255, 255, 0.95);
+
+    --text-primary: #16213e;
+    --text-secondary: #4b5c7d;
+
+    --shadow: 0 15px 40px rgba(15, 23, 42, 0.08);
+}
+
+/* ================= RESET ================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+
+    /* Premium animated cosmic-tech background */
+    background:
+        radial-gradient(circle at 8% 10%,
+            rgba(96, 165, 250, 0.35),
+            transparent 28%),
+        radial-gradient(circle at 92% 55%,
+            rgba(168, 85, 247, 0.22),
+            transparent 30%),
+        radial-gradient(circle at 50% 75%,
+            rgba(6, 182, 212, 0.10),
+            transparent 35%),
+        linear-gradient(
+            115deg,
+            #08142d 0%,
+            #0a1e45 25%,
+            #07122f 55%,
+            #0b1140 78%,
+            #2d1260 100%
+        );
+
+    background-size: 200% 200%;
+    animation: gradientShift 18s ease infinite;
+
+    color: var(--text-primary);
+    line-height: 1.7;
+    overflow-x: hidden;
+    min-height: 100vh;
+    transition: var(--transition);
+}
+
+/* ================= ANIMATED GRADIENT ================= */
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* ================= TECH NETWORK OVERLAY ================= */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+    pointer-events: none;
+
+    /* Glowing tech nodes */
+    background-image:
+        radial-gradient(circle at 12% 30%, rgba(96, 165, 250, 0.80) 2px, transparent 3px),
+        radial-gradient(circle at 22% 55%, rgba(96, 165, 250, 0.70) 2px, transparent 3px),
+        radial-gradient(circle at 35% 20%, rgba(96, 165, 250, 0.60) 2px, transparent 3px),
+        radial-gradient(circle at 48% 48%, rgba(96, 165, 250, 0.75) 2px, transparent 3px),
+        radial-gradient(circle at 62% 34%, rgba(96, 165, 250, 0.65) 2px, transparent 3px),
+        radial-gradient(circle at 78% 65%, rgba(96, 165, 250, 0.70) 2px, transparent 3px),
+        radial-gradient(circle at 90% 42%, rgba(96, 165, 250, 0.75) 2px, transparent 3px),
+        radial-gradient(circle at 15% 80%, rgba(168, 85, 247, 0.60) 2px, transparent 3px),
+        radial-gradient(circle at 82% 82%, rgba(168, 85, 247, 0.65) 2px, transparent 3px);
+
+    background-size: 100% 100%;
+    background-position: 0 var(--scroll-offset, 0px);
+
+    opacity: 0.65;
+
+    animation: twinkle 6s ease-in-out infinite alternate;
+
+    /* Smooth movement while scrolling */
+    transition: background-position 0.2s linear;
+}
+/* ================= TWINKLE EFFECT ================= */
+@keyframes twinkle {
+    from {
+        opacity: 0.35;
+    }
+    to {
+        opacity: 0.85;
+    }
+}
+/* ================= CUSTOM SCROLLBAR ================= */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(var(--accent-1), var(--accent-2));
+    border-radius: 999px;
+}
+
+/* ================= PRELOADER ================= */
+#preloader {
+    position: fixed;
+    inset: 0;
+    background: var(--bg-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+
+.loader {
+    width: 60px;
+    height: 60px;
+    border: 4px solid rgba(255, 255, 255, 0.12);
+    border-top-color: var(--accent-1);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+.background-blobs {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: -1;
+}
+
+/* Hide all old blob elements completely */
+.blob {
+    display: none !important;
+}
+
+/* ==========================================================
+   ADD MANY MORE TINY STARS USING PSEUDO-ELEMENTS
+   These stars continuously zoom toward the viewer.
+========================================================== */
+
+/* Star Layer 1 - Very dense tiny stars */
+.background-blobs::before,
+.background-blobs::after {
+    content: "";
+    position: absolute;
+    inset: -100%;
+    background-repeat: repeat;
+    will-change: transform, opacity;
+    pointer-events: none;
+}
+
+/* ==========================================================
+   REPLACE ONLY THE .background-blobs::before SECTION
+   WITH THIS ULTRA-DENSE STAR LAYER.
+
+   This dramatically increases the number of tiny stars.
+========================================================== */
+
+.background-blobs::before {
+    content: "";
+    position: absolute;
+    inset: -100%;
+    pointer-events: none;
+    background-repeat: repeat;
+
+    /* Hundreds of tiny stars in a repeating tile */
+    background-image:
+        radial-gradient(1px 1px at 10px 20px, rgba(255,255,255,0.95), transparent),
+        radial-gradient(1px 1px at 35px 60px, rgba(255,255,255,0.90), transparent),
+        radial-gradient(1px 1px at 55px 15px, rgba(125,211,252,0.95), transparent),
+        radial-gradient(1px 1px at 80px 45px, rgba(255,255,255,0.92), transparent),
+        radial-gradient(1px 1px at 105px 75px, rgba(196,181,253,0.95), transparent),
+        radial-gradient(1px 1px at 130px 25px, rgba(255,255,255,0.90), transparent),
+        radial-gradient(1px 1px at 155px 90px, rgba(125,211,252,0.95), transparent),
+        radial-gradient(1px 1px at 180px 50px, rgba(255,255,255,0.92), transparent),
+        radial-gradient(1px 1px at 205px 12px, rgba(196,181,253,0.95), transparent),
+        radial-gradient(1px 1px at 230px 68px, rgba(255,255,255,0.90), transparent),
+        radial-gradient(1px 1px at 255px 35px, rgba(125,211,252,0.95), transparent),
+        radial-gradient(1px 1px at 280px 95px, rgba(255,255,255,0.92), transparent),
+        radial-gradient(1px 1px at 305px 20px, rgba(196,181,253,0.95), transparent),
+        radial-gradient(1px 1px at 330px 55px, rgba(255,255,255,0.90), transparent),
+        radial-gradient(1px 1px at 355px 85px, rgba(125,211,252,0.95), transparent),
+        radial-gradient(1px 1px at 380px 30px, rgba(255,255,255,0.92), transparent);
+
+    /* Small tile repeated across the entire screen */
+    background-size: 400px 120px;
+
+    opacity: 0.95;
+    animation: starfieldZoom 40s linear infinite;
+}
+
+/* Slightly larger accent stars */
+.background-blobs::after {
+    background-image:
+        radial-gradient(2px 2px at 80px 120px, rgba(255,255,255,0.95), transparent),
+        radial-gradient(2px 2px at 260px 220px, rgba(56,189,248,0.95), transparent),
+        radial-gradient(2px 2px at 470px 100px, rgba(255,255,255,0.90), transparent),
+        radial-gradient(2px 2px at 680px 340px, rgba(167,139,250,0.95), transparent),
+        radial-gradient(2px 2px at 920px 180px, rgba(255,255,255,0.90), transparent);
+    background-size: 1400px 1400px;
+    opacity: 0.55;
+    animation: starfieldZoom 25s linear infinite;
+}
+
+/* ==========================================================
+   STRONG ZOOM-IN EFFECT
+========================================================== */
+@keyframes starfieldZoom {
+    0% {
+        transform: scale(0.15);
+        opacity: 0;
+    }
+    8% {
+        opacity: 0.35;
+    }
+    20% {
+        opacity: 0.9;
+    }
+    100% {
+        transform: scale(6);
+        opacity: 0;
+    }
+}
+/* ================= IMPROVED CURSOR GLOW ================= */
+.cursor-glow {
+    position: fixed;
+    width: 520px;
+    height: 520px;
+    border-radius: 50%;
+
+    background: radial-gradient(
+        circle,
+        rgba(0, 212, 255, 0.14),
+        rgba(124, 58, 237, 0.10),
+        rgba(255, 255, 255, 0.04),
+        transparent 72%
+    );
+
+    filter: blur(65px);
+    transform: translate(-50%, -50%);
+    left: 50%;
+    top: 50%;
+
+    transition: left 0.15s linear, top 0.15s linear;
+    opacity: 0.95;
+}
+/* ================= NAVBAR ================= */
+/* ==========================================================
+   NAVBAR - Inspired by Reference Design
+========================================================== */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+
+    z-index: 1000;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 22px 80px;
+
+    /* Glass background */
+    background: rgba(5, 10, 25, 0.55);
+
+    /* Blur effect */
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+
+    /* Thin bottom border */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+
+    /* Subtle shadow */
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+
+    transition: all 0.4s ease;
+}
+
+.logo {
+    text-decoration: none;
+    color: var(--text-primary);
+    font-size: 1.15rem;
+    font-weight: 700;
+}
+
+.navbar ul {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.nav-link {
+    position: relative;
+    display: inline-block;
+    padding: 12px 24px;
+    border-radius: 999px;
+
+    color: var(--text-primary);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+
+    transition: all 0.35s ease;
+}
+
+/* Hover Effect */
+.nav-link:hover {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+
+    box-shadow:
+        0 8px 25px rgba(0, 212, 255, 0.08),
+        0 0 18px rgba(0, 212, 255, 0.05);
+
+    transform: translateY(-2px);
+}
+
+
+/* Active Button */
+.nav-link.active {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+
+    box-shadow:
+        0 8px 25px rgba(0, 212, 255, 0.10),
+        0 0 20px rgba(0, 212, 255, 0.06);
+}
+
+
+
+
+.disabled-link {
+    opacity: 0.65;
+    cursor: default;
+    pointer-events: none;
+}
+
+.theme-toggle {
+    width: 48px;
+    height: 48px;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--text-primary);
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    transition: var(--transition);
+}
+
+.theme-toggle:hover {
+    transform: scale(1.08);
+    box-shadow:
+        0 8px 25px rgba(0, 212, 255, 0.12),
+        0 0 20px rgba(0, 212, 255, 0.08);
+}
+/* ================= HERO SECTION ================= */
+main {
+    position: relative;
+    z-index: 1;
+}
+
+.hero-section {
+    padding: 140px 20px 80px;
+}
+
+.hero-container,
+.about-container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+}
+
+.hero-container {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 60px;
+    align-items: center;
+    min-height: calc(100vh - 180px);
+}
+
+.hero-subtitle {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--accent-1);
+    margin-bottom: 10px;
+    letter-spacing: 0.5px;
+}
+
+.hero-title {
+    font-family: 'Orbitron', sans-serif; /* Change to another font if desired */
+    font-size: clamp(2.8rem, 4vw, 4.8rem); /* Reduced size */
+    line-height: 1.05;
+    font-weight: 800;
+    letter-spacing: -2px;
+    margin-bottom: 20px;
+
+    text-shadow:
+        0 0 20px rgba(255, 255, 255, 0.04),
+        0 0 40px rgba(0, 212, 255, 0.03);
+}
+.typing-text {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--accent-3);
+    min-height: 56px;
+    margin-bottom: 20px;
+}
+
+.hero-description {
+    max-width: 650px;
+    color: var(--text-secondary);
+    margin-bottom: 30px;
+    font-size: 1.05rem;
+}
+
+/* ================= BUTTONS ================= */
+.hero-buttons {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-bottom: 28px;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    padding: 14px 28px;
+    border-radius: 999px;
+
+    text-decoration: none;
+    font-weight: 600;
+
+    transition: var(--transition);
+}
+
+.primary-btn {
+    background: linear-gradient(
+        135deg,
+        var(--accent-1),
+        var(--accent-2)
+    );
+    color: #ffffff;
+}
+
+.secondary-btn {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid var(--card-border);
+    color: var(--text-primary);
+}
+
+.btn:hover {
+    transform: translateY(-4px) scale(1.02);
+    box-shadow:
+        0 12px 35px rgba(0, 212, 255, 0.18),
+        0 0 24px rgba(0, 212, 255, 0.08);
+}
+
+/* ================= SOCIAL LINKS ================= */
+/* ================= SOCIAL LINKS CONTAINER ================= */
+.social-links {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-top: 10px;
+}
+
+/* ================= PILL-SHAPED SOCIAL BUTTONS ================= */
+.social-links a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    padding: 12px 22px;
+    min-height: 52px;
+
+    border-radius: 999px;
+
+    text-decoration: none;
+    color: var(--text-primary);
+    font-size: 0.95rem;
+    font-weight: 500;
+
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+}
+
+/* Icon size inside buttons */
+.social-links a i {
+    font-size: 1rem;
+}
+
+/* Hover effect */
+.social-links a:hover {
+    transform: translateY(-5px) scale(1.03);
+    color: var(--accent-1);
+    border-color: rgba(0, 212, 255, 0.35);
+
+    box-shadow:
+        0 12px 35px rgba(0, 212, 255, 0.12),
+        0 0 20px rgba(0, 212, 255, 0.08);
+}
+
+/* ================= PROFILE IMAGE ================= */
+.hero-image {
+    display: flex;
+    justify-content: center;
+}
+
+.profile-frame {
+    width: 480px;              /* Reduced from 600px */
+    height: 480px;
+    padding: 12px;
+    border-radius: 50%;
+
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+
+    box-shadow: var(--shadow);
+
+    /* Continuous gentle floating animation */
+    animation: profileFloat 5s ease-in-out infinite;
+
+    transition: all 0.4s ease;
+}
+
+.profile-frame:hover {
+    border-color: rgba(0, 212, 255, 0.25);
+    box-shadow:
+        0 18px 50px rgba(0, 212, 255, 0.10),
+        0 0 30px rgba(0, 212, 255, 0.06);
+}
+/* Floating animation */
+@keyframes profileFloat {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-12px); /* Small bounce height */
+    }
+}
+
+.profile-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+/* ================= ABOUT SECTION ================= */
+.about-section {
+    padding: 80px 20px 100px;
+}
+
+.section-title {
+    font-size: 2.8rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 50px;
+    background: linear-gradient(
+        90deg,
+        var(--accent-1),
+        var(--accent-2)
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.about-container {
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    gap: 40px;
+    align-items: center;
+}
+
+.about-image {
+    display: flex;
+    justify-content: center;
+}
+
+.about-photo-frame {
+    width: 280px;
+    height: 280px;
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+}
+
+.about-photo-frame:hover {
+    transform: translateY(-8px) scale(1.03);
+    border-color: rgba(0, 212, 255, 0.25);
+    box-shadow:
+        0 18px 50px rgba(0, 212, 255, 0.10),
+        0 0 30px rgba(0, 212, 255, 0.06);
+}
+
+.animated-icon i {
+    font-size: 7rem;
+    color: var(--accent-1);
+    animation: pulseRotate 4s ease-in-out infinite;
+    filter: drop-shadow(0 0 20px rgba(0, 212, 255, 0.35));
+}
+
+@keyframes pulseRotate {
+    0%, 100% {
+        transform: scale(1) rotate(0deg);
+    }
+
+    25% {
+        transform: scale(1.08) rotate(5deg);
+    }
+
+    50% {
+        transform: scale(1.15) rotate(0deg);
+    }
+
+    75% {
+        transform: scale(1.08) rotate(-5deg);
+    }
+}
+
+.about-photo-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ==========================================================
+   EDUCATION SECTION CSS - PART 1 OF 3
+   Add this to the END of your style.css
+========================================================== */
+
+/* Section spacing */
+.education-section {
+    padding: 120px 20px 100px;
+    position: relative;
+}
+
+/* Subtitle */
+.section-subtitle {
+    max-width: 760px;
+    margin: 20px auto 60px;
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 1rem;
+    line-height: 1.8;
+}
+
+/* Grid layout */
+.education-grid {
+    max-width: 1400px;
+    margin: 0 auto;
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 36px;
+}
+
+/* Card container */
+.education-card {
+    perspective: 1500px;
+    min-height: 460px;
+}
+
+/* Flip wrapper */
+.education-card-inner {
+    position: relative;
+    width: 100%;
+    height: 460px;
+
+    transform-style: preserve-3d;
+    transition: transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Flip on hover */
+.education-card:hover .education-card-inner {
+    transform: rotateY(180deg);
+}
+/* ==========================================================
+   EDUCATION SECTION CSS - PART 2 OF 3
+========================================================== */
+
+/* Front and Back Sides */
+.education-card-front,
+.education-card-back {
+    position: absolute;
+    inset: 0;
+
+    padding: 36px 28px;
+    border-radius: 32px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    /* Premium glassmorphism */
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+
+    box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.20),
+        0 0 40px rgba(0, 212, 255, 0.03);
+
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+
+    transition: all 0.4s ease;
+}
+
+/* Back Side */
+.education-card-back {
+    transform: rotateY(180deg);
+    border-color: rgba(0, 212, 255, 0.20);
+}
+
+/* Badges */
+.education-badge {
+    display: inline-block;
+    padding: 10px 22px;
+    margin-bottom: 24px;
+
+    border-radius: 999px;
+
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.4px;
+    color: #ffffff;
+
+    background: linear-gradient(
+        135deg,
+        #06b6d4,
+        #7c3aed
+    );
+
+    box-shadow: 0 8px 25px rgba(0, 212, 255, 0.15);
+}
+
+/* Current badge */
+.current-badge {
+    background: linear-gradient(
+        135deg,
+        #06b6d4,
+        #7c3aed
+    );
+}
+
+/* Card headings */
+.education-card-front h3,
+.education-card-back h3 {
+    font-size: 1.45rem;
+    font-weight: 700;
+    line-height: 1.4;
+    margin-bottom: 16px;
+}
+
+/* Location */
+.education-location {
+    color: var(--text-secondary);
+    font-size: 0.96rem;
+    line-height: 1.7;
+    margin-bottom: 24px;
+}
+
+.education-location i {
+    margin-right: 6px;
+    color: var(--accent-1);
+}
+
+/* Hover hint */
+.hover-hint {
+    margin-top: auto;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--accent-1);
+    opacity: 0.9;
+}
+/* ==========================================================
+   EDUCATION SECTION CSS - PART 3 OF 3
+========================================================== */
+
+/* ==========================================================
+   EDUCATION LOGO CONTAINER
+========================================================== */
+.education-icon {
+    width: 130px;
+    height: 130px;
+    margin: 0 auto 30px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+    overflow: hidden;
+
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+
+    box-shadow:
+        inset 0 0 25px rgba(255, 255, 255, 0.03),
+        0 12px 35px rgba(0, 212, 255, 0.06);
+
+    transition: all 0.4s ease;
+}
+
+/* Logo hover effect */
+.education-card:hover .education-icon {
+    transform: scale(1.06);
+    border-color: rgba(0, 212, 255, 0.25);
+
+    box-shadow:
+        inset 0 0 25px rgba(255, 255, 255, 0.03),
+        0 16px 45px rgba(0, 212, 255, 0.10);
+}
+
+/* Default image styling */
+.education-icon img {
+    display: block;
+    max-width: 100%;
+    max-height: 100%;
+    background: transparent;
+}
+
+/* Vardhaman logo */
+.education-icon img[alt*="Vardhaman"] {
+    width: 96px;
+    height: 96px;
+
+    /* Show the full logo proportionally */
+    object-fit: contain;
+    object-position: center;
+
+    /* Keep a clean circular appearance */
+    border-radius: 50%;
+    background: transparent;
+
+    /* Slight enlargement for better visibility */
+    transform: scale(1.12);
+
+    display: block;
+}
+
+/* Narayana logo */
+.education-icon img[alt*="Narayana"] {
+    width: 96px;
+    height: 96px;
+
+    object-fit: contain;
+    object-position: center;
+
+    border-radius: 50%;
+
+    /* Slight zoom for better visibility */
+    transform: scale(1.15);
+}
+
+/* Alphonsus logo */
+.education-icon img[alt*="Alphonsus"] {
+    width: 92px;
+    height: 92px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 50%;
+    transform: scale(1.08);
+}
+
+/* Back side description */
+.education-card-back p {
+    color: var(--text-secondary);
+    margin-bottom: 22px;
+    line-height: 1.7;
+}
+
+/* Stats boxes */
+.education-stat {
+    width: 100%;
+    padding: 12px 16px;
+    margin-bottom: 12px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    border-radius: 14px;
+
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.education-stat span {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.education-stat strong {
+    color: var(--text-primary);
+    font-size: 0.95rem;
+    font-weight: 600;
+}
+
+/* Card glow on hover */
+.education-card:hover .education-card-front,
+.education-card:hover .education-card-back {
+    border-color: rgba(0, 212, 255, 0.28);
+    box-shadow:
+        0 25px 70px rgba(0, 212, 255, 0.10),
+        0 0 40px rgba(0, 212, 255, 0.06);
+}
+
+/* Responsive layout */
+@media (max-width: 1100px) {
+    .education-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .education-section {
+        padding: 90px 16px 80px;
+    }
+
+    .education-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+
+    .education-card {
+        min-height: 420px;
+    }
+
+    .education-card-inner {
+        height: 420px;
+    }
+
+    .education-card-front,
+    .education-card-back {
+        padding: 28px 22px;
+        border-radius: 26px;
+    }
+
+    .education-card-front h3,
+    .education-card-back h3 {
+        font-size: 1.25rem;
+    }
+
+    .education-icon {
+        width: 110px;
+        height: 110px;
+    }
+
+    .section-subtitle {
+        margin: 20px auto 40px;
+        font-size: 0.95rem;
+    }
+}
+/* ==========================================================
+   COSMIC STARFIELD BACKGROUND (SAFE VERSION)
+   Add this code at the VERY END of style.css
+
+   IMPORTANT:
+   - Changes ONLY background-image
+   - Does NOT modify font-family
+   - Does NOT modify text colors
+   - Does NOT affect existing layout
+========================================================== */
+
+/* Smooth transition between section backgrounds */
+body {
+    transition: background-image 1.5s ease;
+}
+
+/* ----------------------------------------------------------
+   FIXED BACKGROUND CONTAINER
+---------------------------------------------------------- */
+.cosmic-background {
+    position: fixed;
+    inset: 0;
+    z-index: -10;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+/* ----------------------------------------------------------
+   STAR LAYERS
+---------------------------------------------------------- */
+.stars {
+    position: absolute;
+    inset: -100%;
+    background-repeat: repeat;
+    will-change: transform, opacity;
+    animation: starfieldZoom linear infinite;
+}
+
+/* Many tiny stars */
+.stars-1 {
+    background-image:
+        radial-gradient(1px 1px at 20px 30px, rgba(255,255,255,0.95), transparent),
+        radial-gradient(1px 1px at 70px 120px, rgba(255,255,255,0.90), transparent),
+        radial-gradient(1px 1px at 140px 80px, rgba(125,211,252,0.95), transparent),
+        radial-gradient(1px 1px at 210px 190px, rgba(255,255,255,0.90), transparent),
+        radial-gradient(1px 1px at 290px 60px, rgba(196,181,253,0.95), transparent),
+        radial-gradient(1px 1px at 360px 240px, rgba(255,255,255,0.90), transparent),
+        radial-gradient(1px 1px at 430px 150px, rgba(125,211,252,0.95), transparent),
+        radial-gradient(1px 1px at 520px 320px, rgba(255,255,255,0.90), transparent),
+        radial-gradient(1px 1px at 610px 90px, rgba(255,255,255,0.95), transparent),
+        radial-gradient(1px 1px at 720px 260px, rgba(196,181,253,0.95), transparent);
+    background-size: 800px 800px;
+    animation-duration: 45s;
+    opacity: 0.95;
+}
+
+/* Medium stars */
+.stars-2 {
+    background-image:
+        radial-gradient(2px 2px at 80px 120px, rgba(255,255,255,0.95), transparent),
+        radial-gradient(2px 2px at 260px 220px, rgba(56,189,248,0.95), transparent),
+        radial-gradient(2px 2px at 470px 100px, rgba(255,255,255,0.90), transparent),
+        radial-gradient(2px 2px at 680px 340px, rgba(167,139,250,0.95), transparent),
+        radial-gradient(2px 2px at 920px 180px, rgba(255,255,255,0.90), transparent);
+    background-size: 1000px 1000px;
+    animation-duration: 28s;
+    opacity: 0.70;
+}
+
+
+/* Large accent stars */
+.stars-3 {
+    background-image:
+        radial-gradient(3px 3px at 150px 150px, rgba(255,255,255,0.95), transparent),
+        radial-gradient(3px 3px at 500px 320px, rgba(34,211,238,0.95), transparent),
+        radial-gradient(3px 3px at 900px 220px, rgba(196,181,253,0.95), transparent);
+    background-size: 1200px 1200px;
+    animation-duration: 18s;
+    opacity: 0.45;
+}
+
+/* Zoom-in from deep space */
+/* ==========================================================
+   REPLACE ONLY THE @keyframes starfieldZoom SECTION
+   WITH THIS ENHANCED VERSION.
+
+   This creates a much stronger "stars rushing toward you"
+   effect, like traveling through space.
+========================================================== */
+
+@keyframes starfieldZoom {
+    0% {
+        /* Stars start very far away and tiny */
+        transform: scale(0.15);
+        opacity: 0;
+    }
+
+    5% {
+        opacity: 0.25;
+    }
+
+    15% {
+        opacity: 0.7;
+    }
+
+    35% {
+        opacity: 1;
+    }
+
+    100% {
+        /* Stars expand dramatically toward the viewer */
+        transform: scale(6);
+        opacity: 0;
+    }
+}
+/* ==========================================================
+   PREMIUM COSMIC SECTION COLOR THEMES
+   Replace your existing section theme classes with this code.
+   These styles change ONLY the background-image of the body.
+========================================================== */
+
+/* Smooth transition between section themes */
+body {
+    transition: background-image 2s ease-in-out;
+}
+
+/* ==========================================================
+   DEFAULT HOME / HERO THEME
+   Deep space with cyan and violet nebula
+========================================================== */
+body {
+    background-image:
+        radial-gradient(circle at 12% 18%, rgba(34, 211, 238, 0.12), transparent 35%),
+        radial-gradient(circle at 88% 12%, rgba(59, 130, 246, 0.10), transparent 40%),
+        radial-gradient(circle at 50% 85%, rgba(139, 92, 246, 0.10), transparent 45%),
+        radial-gradient(circle at 75% 65%, rgba(14, 165, 233, 0.06), transparent 40%),
+        linear-gradient(
+            135deg,
+            #020617 0%,
+            #03132d 25%,
+            #08204a 50%,
+            #1a1b4b 75%,
+            #2b0f5c 100%
+        );
+}
+
+/* ==========================================================
+   ABOUT SECTION
+   Elegant blue nebula
+========================================================== */
+body.theme-about {
+    background-image:
+        radial-gradient(circle at 15% 20%, rgba(34, 211, 238, 0.14), transparent 35%),
+        radial-gradient(circle at 82% 18%, rgba(59, 130, 246, 0.12), transparent 40%),
+        radial-gradient(circle at 50% 82%, rgba(14, 165, 233, 0.08), transparent 45%),
+        radial-gradient(circle at 78% 72%, rgba(139, 92, 246, 0.06), transparent 40%),
+        linear-gradient(
+            135deg,
+            #021021 0%,
+            #052347 30%,
+            #0a3564 60%,
+            #162c57 100%
+        );
+}
+
+/* ==========================================================
+   EDUCATION SECTION
+   Emerald-cyan aurora with violet accents
+========================================================== */
+/* EDUCATION SECTION */
+body.theme-education {
+    background-image:
+        radial-gradient(circle at 8% 10%, rgba(0, 212, 255, 0.22), rgba(0, 212, 255, 0.08), transparent 35%),
+        radial-gradient(circle at 35% 35%, rgba(37, 99, 235, 0.14), rgba(37, 99, 235, 0.04), transparent 45%),
+        radial-gradient(circle at 88% 82%, rgba(16, 185, 129, 0.18), rgba(16, 185, 129, 0.05), transparent 40%),
+        radial-gradient(circle at 78% 42%, rgba(99, 102, 241, 0.10), rgba(99, 102, 241, 0.03), transparent 45%),
+        radial-gradient(circle at 22% 85%, rgba(14, 165, 233, 0.08), rgba(14, 165, 233, 0.02), transparent 45%),
+        linear-gradient(
+            135deg,
+            #020617 0%,
+            #031a3a 25%,
+            #05234d 50%,
+            #0b1745 75%,
+            #4c1d95 100%
+        );
+}
+/* PROJECTS SECTION */
+body.theme-projects {
+    background-image:
+        radial-gradient(circle at 8% 10%, rgba(0, 212, 255, 0.22), rgba(0, 212, 255, 0.08), transparent 35%),
+        radial-gradient(circle at 35% 35%, rgba(37, 99, 235, 0.14), rgba(37, 99, 235, 0.04), transparent 45%),
+        radial-gradient(circle at 88% 82%, rgba(168, 85, 247, 0.24), rgba(168, 85, 247, 0.08), transparent 40%),
+        radial-gradient(circle at 78% 42%, rgba(99, 102, 241, 0.10), rgba(99, 102, 241, 0.03), transparent 45%),
+        radial-gradient(circle at 22% 85%, rgba(14, 165, 233, 0.08), rgba(14, 165, 233, 0.02), transparent 45%),
+        linear-gradient(
+            135deg,
+            #020617 0%,
+            #031a3a 25%,
+            #05234d 50%,
+            #0b1745 75%,
+            #4c1d95 100%
+        );
+}
+
+/* EXPERIENCE SECTION */
+body.theme-experience {
+    background-image:
+        radial-gradient(circle at 8% 10%, rgba(0, 212, 255, 0.22), rgba(0, 212, 255, 0.08), transparent 35%),
+        radial-gradient(circle at 35% 35%, rgba(37, 99, 235, 0.14), rgba(37, 99, 235, 0.04), transparent 45%),
+        radial-gradient(circle at 88% 82%, rgba(99, 102, 241, 0.18), rgba(99, 102, 241, 0.05), transparent 40%),
+        radial-gradient(circle at 78% 42%, rgba(168, 85, 247, 0.10), rgba(168, 85, 247, 0.03), transparent 45%),
+        radial-gradient(circle at 22% 85%, rgba(14, 165, 233, 0.08), rgba(14, 165, 233, 0.02), transparent 45%),
+        linear-gradient(
+            135deg,
+            #020617 0%,
+            #031a3a 25%,
+            #05234d 50%,
+            #0b1745 75%,
+            #4c1d95 100%
+        );
+}
+
+/* CONTACT SECTION */
+body.theme-contact {
+    background-image:
+        radial-gradient(circle at 8% 10%, rgba(0, 212, 255, 0.22), rgba(0, 212, 255, 0.08), transparent 35%),
+        radial-gradient(circle at 35% 35%, rgba(37, 99, 235, 0.14), rgba(37, 99, 235, 0.04), transparent 45%),
+        radial-gradient(circle at 88% 82%, rgba(168, 85, 247, 0.24), rgba(168, 85, 247, 0.08), transparent 40%),
+        radial-gradient(circle at 78% 42%, rgba(99, 102, 241, 0.10), rgba(99, 102, 241, 0.03), transparent 45%),
+        radial-gradient(circle at 22% 85%, rgba(14, 165, 233, 0.08), rgba(14, 165, 233, 0.02), transparent 45%),
+        linear-gradient(
+            135deg,
+            #020617 0%,
+            #031a3a 25%,
+            #05234d 50%,
+            #071035 75%,
+            #320c5a 100%
+        );
+}
+/* Hide the circular moon button completely */
+.theme-toggle,
+.dark-mode-toggle,
+.mode-toggle,
+#theme-toggle,
+#darkModeToggle {
+    display: none !important;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ==========================================================
+   CERTIFICATES SECTION CSS - PART 1 OF 3
+   Add this code at the END of your style.css
+========================================================== */
+
+/* ==========================================================
+   CERTIFICATES SECTION
+========================================================== */
+.certificates-section {
+    padding: 120px 20px 100px;
+    position: relative;
+}
+
+/* Section Header */
+.certificates-section .section-header {
+    text-align: center;
+    margin-bottom: 70px;
+}
+
+.certificates-section .section-subtitle {
+    max-width: 820px;
+    margin: 20px auto 0;
+    color: var(--text-secondary);
+    font-size: 1rem;
+    line-height: 1.9;
+}
+
+/* ==========================================================
+   VERTICAL CERTIFICATES LAYOUT
+========================================================== */
+.certificates-container {
+    /* Increase maximum width so cards occupy more screen space */
+    max-width: 1500px;
+
+    /* Center the container */
+    margin: 0 auto;
+
+    /* Add small side padding */
+    padding: 0 30px;
+
+    /* Two cards per row */
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+
+    /* Space between cards */
+    gap: 36px;
+}
+/* ==========================================================
+   OPTIONAL ENHANCEMENTS
+   Add this code after the .certificates-container styles.
+   This makes the cards larger and ensures the logos are
+   visually balanced inside each card.
+========================================================== */
+
+/* Slightly larger cards for a premium look */
+.certificate-card {
+    min-height: 320px;   /* Increase from 280px if desired */
+}
+
+/* Larger circular logo container */
+.certificate-logo {
+    width: 130px;
+    height: 130px;
+}
+
+/* Better logo fitting */
+.certificate-logo img {
+    width: 84px;
+    height: 84px;
+    object-fit: contain;
+    object-position: center;
+}
+
+/* Custom size adjustments for specific logos */
+.certificate-logo img[alt*="AWS"] {
+    width: 88px;
+    height: 88px;
+}
+
+.certificate-logo img[alt*="Deloitte"] {
+    width: 80px;
+    height: 80px;
+}
+
+.certificate-logo img[alt*="Infosys"] {
+    width: 84px;
+    height: 84px;
+}
+
+.certificate-logo img[alt*="NPTEL"] {
+    width: 86px;
+    height: 86px;
+}
+
+.certificate-logo img[alt*="TCS"] {
+    width: 84px;
+    height: 84px;
+}
+
+.certificate-logo img[alt*="NCC"] {
+    width: 88px;
+    height: 88px;
+}
+/* ==========================================================
+   CERTIFICATE CARD
+========================================================== */
+.certificate-card {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    gap: 32px;
+
+    min-height: 280px;
+    padding: 34px 36px;
+    border-radius: 32px;
+
+    /* Premium glass effect */
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+
+    box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.22),
+        0 0 35px rgba(0, 212, 255, 0.03);
+
+    overflow: hidden;
+    transition: all 0.45s ease;
+}
+
+
+/* Premium glass glow on hover */
+.certificate-card:hover {
+    transform: translateY(-12px) scale(1.02);
+
+    border-color: rgba(0, 212, 255, 0.35);
+
+    box-shadow:
+        /* Outer cyan glow */
+        0 0 40px rgba(0, 212, 255, 0.20),
+
+        /* Outer purple glow */
+        0 0 80px rgba(124, 58, 237, 0.14),
+
+        /* Card depth */
+        0 30px 80px rgba(0, 0, 0, 0.28),
+
+        /* Inner glass shine */
+        inset 0 0 30px rgba(255, 255, 255, 0.05);
+}
+.certificate-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: linear-gradient(
+        120deg,
+        rgba(255, 255, 255, 0.08),
+        rgba(255, 255, 255, 0.02) 35%,
+        transparent 60%
+    );
+    pointer-events: none;
+    opacity: 0.9;
+}
+
+/* ==========================================================
+   CERTIFICATES SECTION CSS - PART 2 OF 3
+========================================================== */
+
+/* ==========================================================
+   CERTIFICATE LOGO
+========================================================== */
+.certificate-logo {
+    flex-shrink: 0;
+
+    width: 120px;
+    height: 120px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+    overflow: hidden;
+
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+
+    box-shadow:
+        inset 0 0 25px rgba(255, 255, 255, 0.03),
+        0 12px 35px rgba(0, 212, 255, 0.06);
+
+    transition: all 0.45s ease;
+}   
+
+/* Logo glow on hover */
+.certificate-card:hover .certificate-logo {
+    transform: scale(1.08);
+    border-color: rgba(0, 212, 255, 0.28);
+
+    box-shadow:
+        inset 0 0 25px rgba(255, 255, 255, 0.03),
+        0 18px 50px rgba(0, 212, 255, 0.15),
+        0 0 40px rgba(124, 58, 237, 0.08);
+}
+
+/* Logo image */
+.certificate-logo img {
+    /* Much larger default size */
+    width: 100px;
+    height: 100px;
+
+    /* Show full image without cropping */
+    object-fit: contain;
+    object-position: center;
+
+    /* Keep logos circular and clean */
+    border-radius: 50%;
+    background: transparent;
+
+    /* Prevent overflow */
+    max-width: 100%;
+    max-height: 100%;
+
+    display: block;
+    padding: 0;
+    margin: 0;
+
+    /* Slight enhancement */
+    filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.25));
+}
+
+
+/* ==========================================================
+   CERTIFICATE CONTENT
+========================================================== */
+.certificate-content {
+    flex: 1;
+}
+
+.certificate-badge {
+    display: inline-block;
+    padding: 8px 18px;
+    margin-bottom: 16px;
+
+    border-radius: 999px;
+
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.4px;
+    color: #ffffff;
+
+    background: linear-gradient(
+        135deg,
+        #06b6d4,
+        #7c3aed
+    );
+
+    box-shadow:
+        0 8px 25px rgba(0, 212, 255, 0.12);
+}
+
+.certificate-title {
+    font-size: 1.55rem;
+    font-weight: 700;
+    line-height: 1.4;
+    margin-bottom: 10px;
+}
+
+.certificate-org {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--accent-1);
+    margin-bottom: 6px;
+}
+
+.certificate-date {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    margin-bottom: 0;
+}
+/* ==========================================================
+   CERTIFICATES SECTION CSS - PART 3 OF 3
+   Hover Description + Responsive Design
+========================================================== */
+
+/* ==========================================================
+   HOVER DESCRIPTION
+   Hidden by default and revealed on card hover
+========================================================== */
+.certificate-description {
+    margin-top: 18px;
+    padding-top: 18px;
+
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+
+    font-size: 0.95rem;
+    line-height: 1.8;
+    color: var(--text-secondary);
+
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+
+    transform: translateY(10px);
+    transition:
+        max-height 0.45s ease,
+        opacity 0.45s ease,
+        transform 0.45s ease;
+}
+
+/* Reveal description on hover */
+.certificate-card:hover .certificate-description {
+    max-height: 200px;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ==========================================================
+   RESPONSIVE DESIGN
+========================================================== */
+@media (max-width: 992px) {
+    .certificates-container {
+        max-width: 100%;
+        padding: 0 20px;
+        grid-template-columns: 1fr;
+        gap: 28px;
+    }
+}
+
+@media (max-width: 768px) {
+    .certificate-card {
+        flex-direction: column;
+        text-align: center;
+        gap: 24px;
+        min-height: auto;
+        padding: 30px 24px;
+    }
+}
+/* ==========================================================
+   INDIVIDUAL LOGO SIZE ADJUSTMENTS
+   Enlarged for better visibility
+========================================================== */
+
+/* AWS */
+.certificate-logo img[alt*="AWS"] {
+    width: 108px;
+    height: 108px;
+}
+
+/* Deloitte */
+.certificate-logo img[alt*="Deloitte"] {
+    width: 104px;
+    height: 104px;
+}
+
+/* Infosys Springboard */
+.certificate-logo img[alt*="Infosys"] {
+    width: 108px;
+    height: 108px;
+}
+
+/* NPTEL */
+.certificate-logo img[alt*="NPTEL"] {
+    width: 110px;
+    height: 110px;
+}
+
+/* TCS iON */
+.certificate-logo img[alt*="TCS"] {
+    width: 108px;
+    height: 108px;
+}
+
+/* NCC */
+.certificate-logo img[alt*="NCC"] {
+    width: 110px;
+    height: 110px;
+}
+
+/* Make cards visible when JavaScript adds this class */
+.certificate-card.certificate-visible {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+}
+
+/* Safety fallback:
+   If JavaScript fails to load, cards remain visible */
+.certificate-card {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ==========================================================
+   PROJECTS SECTION CSS - PART 1 OF 3
+   Section Layout and Grid
+========================================================== */
+
+/* ==========================================================
+   PROJECTS SECTION
+========================================================== */
+#projects {
+    position: relative;
+    overflow: hidden;
+    padding: 120px 0;
+}
+
+/* ==========================================================
+   PROJECTS GRID
+========================================================== */
+.projects-grid {
+    max-width: 1500px;
+    margin: 0 auto;
+    padding: 0 30px;
+
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+}
+
+/* ==========================================================
+   PROJECT CARD BASE
+========================================================== */
+.project-card {
+    position: relative;
+    overflow: hidden;
+
+    border-radius: 32px;
+
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.10);
+
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+
+    box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.25),
+        0 0 35px rgba(0, 212, 255, 0.03);
+
+    transition:
+        transform 0.5s ease,
+        box-shadow 0.5s ease,
+        border-color 0.5s ease;
+}
+
+/* Featured project subtle emphasis */
+.featured-project {
+    border-color: rgba(0, 212, 255, 0.18);
+}
+
+/* ==========================================================
+   HOVER EFFECT
+========================================================== */
+.project-card:hover {
+    transform: translateY(-14px) scale(1.015);
+
+    border-color: rgba(0, 212, 255, 0.35);
+
+    box-shadow:
+        0 0 40px rgba(0, 212, 255, 0.18),
+        0 0 90px rgba(124, 58, 237, 0.12),
+        0 30px 80px rgba(0, 0, 0, 0.30),
+        inset 0 0 30px rgba(255, 255, 255, 0.04);
+}
+
+/* Glossy shine overlay */
+.project-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+
+    background: linear-gradient(
+        120deg,
+        rgba(255, 255, 255, 0.08),
+        rgba(255, 255, 255, 0.02) 35%,
+        transparent 60%
+    );
+
+    pointer-events: none;
+    z-index: 1;
+}
+/* ==========================================================
+   PROJECTS SECTION CSS - PART 2 OF 3
+   Image Area, GitHub Overlay, and Category Badge
+========================================================== */
+
+/* ==========================================================
+   PROJECT IMAGE WRAPPER
+========================================================== */
+.project-image-wrapper {
+    position: relative;
+    height: 280px;
+    overflow: hidden;
+}
+
+/* Project screenshot */
+.project-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+
+    display: block;
+
+    transition: transform 0.7s ease;
+}
+
+/* Cinematic zoom on hover */
+.project-card:hover .project-image {
+    transform: scale(1.08);
+}
+.project-image[alt*="BIKEYE"] {
+    object-fit: contain;          /* Show full image without cropping */
+    object-position: center;
+    background: rgba(0, 0, 0, 0.18);
+    padding: 8px;                 /* Optional small padding for neat spacing */
+
+    /* Keep proportions */
+    width: 100%;
+    height: 100%;
+}
+
+/* Slight hover zoom only for BIKEYE */
+.project-card:hover .project-image[alt*="BIKEYE"] {
+    transform: scale(1.02);
+}
+/* Dark overlay for better contrast */
+.project-image-wrapper::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    background: linear-gradient(
+        to top,
+        rgba(2, 6, 23, 0.65),
+        rgba(2, 6, 23, 0.15)
+    );
+
+    pointer-events: none;
+}
+
+/* ==========================================================
+   GITHUB OVERLAY BUTTON
+========================================================== */
+.project-overlay-btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 3;
+
+    width: 74px;
+    height: 74px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.10);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+
+    color: #ffffff;
+    font-size: 2rem;
+    text-decoration: none;
+
+    transform: translate(-50%, -50%) scale(0.7);
+    opacity: 0;
+
+    transition: all 0.45s ease;
+}
+
+/* Reveal GitHub button on hover */
+.project-card:hover .project-overlay-btn {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+/* Button glow */
+.project-overlay-btn:hover {
+    color: #00d4ff;
+    border-color: rgba(0, 212, 255, 0.35);
+
+    box-shadow:
+        0 0 35px rgba(0, 212, 255, 0.18),
+        0 0 70px rgba(124, 58, 237, 0.10);
+}
+
+/* ==========================================================
+   CATEGORY BADGE
+========================================================== */
+.project-category {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 3;
+
+    display: inline-block;
+    padding: 8px 18px;
+
+    border-radius: 999px;
+
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.4px;
+    color: #ffffff;
+
+    background: linear-gradient(
+        135deg,
+        #06b6d4,
+        #7c3aed
+    );
+
+    box-shadow:
+        0 8px 25px rgba(0, 212, 255, 0.12);
+}
+/* ==========================================================
+   PROJECTS SECTION CSS - PART 3 OF 3
+   Content, Technology Tags, Responsive Layout,
+   and Scroll Entrance Animation
+========================================================== */
+
+/* ==========================================================
+   PROJECT CONTENT
+========================================================== */
+.project-content {
+    position: relative;
+    z-index: 2;
+    padding: 32px;
+}
+
+.project-title {
+    font-size: 1.6rem;
+    font-weight: 700;
+    line-height: 1.35;
+    margin-bottom: 16px;
+}
+
+.project-description {
+    color: var(--text-secondary);
+    font-size: 0.98rem;
+    line-height: 1.9;
+    margin-bottom: 24px;
+}
+
+/* ==========================================================
+   TECHNOLOGY TAGS
+========================================================== */
+.project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.project-tag {
+    padding: 8px 14px;
+    border-radius: 999px;
+
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    color: #ffffff;
+
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.10);
+
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+    transition: all 0.3s ease;
+}
+
+.project-tag:hover {
+    color: #00d4ff;
+    border-color: rgba(0, 212, 255, 0.25);
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.10);
+}
+
+/* ==========================================================
+   RESPONSIVE DESIGN
+========================================================== */
+@media (max-width: 992px) {
+    .projects-grid {
+        max-width: 100%;
+        padding: 0 20px;
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+}
+
+@media (max-width: 768px) {
+    .project-image-wrapper {
+        height: 220px;
+    }
+
+    .project-content {
+        padding: 26px 22px;
+    }
+
+    .project-title {
+        font-size: 1.35rem;
+    }
+
+    .project-overlay-btn {
+        width: 64px;
+        height: 64px;
+        font-size: 1.7rem;
+    }
+}
+
+/* ==========================================================
+   SCROLL ENTRANCE ANIMATION
+========================================================== */
+.project-card {
+    opacity: 0;
+    transform: translateY(40px);
+}
+
+.project-card.project-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ==========================================================
+   FINAL SIMPLIFIED SKILLS SECTION CSS - PART 1 OF 3
+   Small Skill Cards Layout
+========================================================== */
+
+/* ==========================================================
+   SKILLS SECTION
+========================================================== */
+#skills {
+    position: relative;
+    overflow: hidden;
+    padding: 120px 0;
+}
+
+/* ==========================================================
+   SMALL SKILLS GRID
+   6 compact cards in a responsive grid
+========================================================== */
+.skills-grid {
+    max-width: 1500px;
+    margin: 0 auto 50px;
+    padding: 0 30px;
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+}
+
+/* Tablet */
+@media (max-width: 1100px) {
+    .skills-grid {
+        grid-template-columns: repeat(2, 1fr);
+        padding: 0 20px;
+    }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .skills-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+        padding: 0 15px;
+        margin-bottom: 40px;
+    }
+}
+
+/* ==========================================================
+   SMALL SKILL CARD
+========================================================== */
+.skill-card {
+    position: relative;
+    overflow: hidden;
+
+    padding: 34px 26px 24px;
+    min-height: 250px;
+
+    border-radius: 28px;
+
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.10);
+
+    backdrop-filter: blur(22px);
+    -webkit-backdrop-filter: blur(22px);
+
+    box-shadow:
+        0 20px 50px rgba(0, 0, 0, 0.22),
+        0 0 30px rgba(0, 212, 255, 0.03);
+
+    text-align: center;
+
+    transition:
+        transform 0.5s ease,
+        box-shadow 0.5s ease,
+        border-color 0.5s ease,
+        opacity 0.8s ease,
+        filter 0.8s ease;
+}
+
+/* Premium hover glow */
+.skill-card:hover {
+    transform: translateY(-12px) scale(1.02);
+
+    border-color: rgba(0, 212, 255, 0.35);
+
+    box-shadow:
+        0 0 40px rgba(0, 212, 255, 0.16),
+        0 0 80px rgba(124, 58, 237, 0.10),
+        0 30px 80px rgba(0, 0, 0, 0.30),
+        inset 0 0 30px rgba(255, 255, 255, 0.03);
+}
+
+/* Glossy reflection */
+.skill-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+
+    background: linear-gradient(
+        120deg,
+        rgba(255, 255, 255, 0.08),
+        rgba(255, 255, 255, 0.02) 35%,
+        transparent 60%
+    );
+
+    pointer-events: none;
+}
+/* ==========================================================
+   FINAL SIMPLIFIED SKILLS SECTION CSS - PART 2 OF 3
+   Small Card Content Styling
+========================================================== */
+
+/* ==========================================================
+   SKILL ICON
+========================================================== */
+.skill-icon {
+    width: 88px;
+    height: 88px;
+    margin: 0 auto 24px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.10);
+
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+
+    box-shadow:
+        inset 0 0 20px rgba(255, 255, 255, 0.02),
+        0 10px 30px rgba(0, 212, 255, 0.05);
+
+    transition: all 0.45s ease;
+}
+
+.skill-card:hover .skill-icon {
+    transform: scale(1.08) rotate(4deg);
+    box-shadow:
+        0 0 25px rgba(0, 212, 255, 0.14),
+        0 0 45px rgba(124, 58, 237, 0.08);
+}
+
+/* Icon gradient */
+.skill-icon i {
+    font-size: 2.7rem;
+
+    background: linear-gradient(
+        135deg,
+        #00d4ff,
+        #38bdf8,
+        #7c3aed
+    );
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* ==========================================================
+   SKILL NAME
+========================================================== */
+.skill-name {
+    font-size: 1.55rem;
+    font-weight: 700;
+    line-height: 1.3;
+    margin-bottom: 24px;
+
+    color: #ffffff;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+
+/* ==========================================================
+   PROGRESS BAR
+========================================================== */
+.skill-bar {
+    width: 100%;
+    height: 10px;
+
+    border-radius: 999px;
+    overflow: hidden;
+
+    background: rgba(255, 255, 255, 0.10);
+
+    margin-bottom: 14px;
+}
+
+.skill-progress {
+    width: 0;
+    height: 100%;
+    border-radius: inherit;
+
+    background: linear-gradient(
+        90deg,
+        #00d4ff 0%,
+        #3b82f6 45%,
+        #7c3aed 100%
+    );
+
+    box-shadow:
+        0 0 18px rgba(0, 212, 255, 0.20);
+
+    transition: width 1.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Skill percentage */
+.skill-percent {
+    display: inline-block;
+
+    font-size: 1.1rem;
+    font-weight: 600;
+
+    color: rgba(226, 232, 240, 0.92);
+}
+/* ==========================================================
+   FINAL SIMPLIFIED SKILLS SECTION CSS - PART 3 OF 3
+   Large Detail Cards + Scroll Animation + JavaScript
+========================================================== */
+
+/* ==========================================================
+   LARGE DETAIL CARDS GRID
+========================================================== */
+.skills-detail-grid {
+    max-width: 1500px;
+    margin: 0 auto;
+    padding: 0 30px;
+
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+    .skills-detail-grid {
+        grid-template-columns: 1fr;
+        padding: 0 20px;
+    }
+}
+
+/* ==========================================================
+   LARGE DETAIL CARD
+========================================================== */
+.skill-detail-card {
+    position: relative;
+    overflow: hidden;
+
+    padding: 42px 38px;
+    min-height: 340px;
+
+    border-radius: 32px;
+
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.10);
+
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+
+    box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.22),
+        0 0 35px rgba(0, 212, 255, 0.03);
+
+    text-align: center;
+
+    transition:
+        transform 0.5s ease,
+        box-shadow 0.5s ease,
+        border-color 0.5s ease,
+        opacity 0.8s ease,
+        filter 0.8s ease;
+}
+
+.skill-detail-card:hover {
+    transform: translateY(-12px) scale(1.02);
+    border-color: rgba(0, 212, 255, 0.35);
+
+    box-shadow:
+        0 0 40px rgba(0, 212, 255, 0.16),
+        0 0 80px rgba(124, 58, 237, 0.10),
+        0 30px 80px rgba(0, 0, 0, 0.30),
+        inset 0 0 30px rgba(255, 255, 255, 0.03);
+}
+
+/* Icon */
+.detail-icon {
+    font-size: 3.2rem;
+    margin-bottom: 20px;
+    color: #00d4ff;
+}
+
+/* Badge */
+.detail-badge {
+    display: inline-block;
+    padding: 8px 18px;
+    margin-bottom: 20px;
+
+    border-radius: 999px;
+
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.4px;
+    color: #ffffff;
+
+    background: linear-gradient(135deg, #06b6d4, #7c3aed);
+}
+
+/* Title */
+.detail-title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 14px;
+    color: #ffffff;
+}
+
+/* Subtitle */
+.detail-subtitle {
+    color: var(--text-secondary);
+    line-height: 1.8;
+    margin-bottom: 22px;
+}
+
+/* Hidden content */
+.detail-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+
+    transform: translateY(10px);
+
+    transition:
+        max-height 0.5s ease,
+        opacity 0.5s ease,
+        transform 0.5s ease;
+}
+
+/* Reveal on hover */
+.skill-detail-card:hover .detail-content {
+    max-height: 300px;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Skill pills */
+.detail-content span {
+    padding: 8px 14px;
+    border-radius: 999px;
+
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #ffffff;
+
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.10);
+}
+
+/* ==========================================================
+   SCROLL ENTRANCE ANIMATION
+========================================================== */
+.skill-card,
+.skill-detail-card {
+    opacity: 0;
+    transform: translateY(40px);
+    filter: blur(6px);
+}
+
+.skill-card.skill-visible,
+.skill-detail-card.skill-visible {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ==========================================================
+   EXPERIENCE SECTION CSS - PART 1 OF 3
+   Timeline Layout and Card Structure
+========================================================== */
+
+/* ==========================================================
+   EXPERIENCE SECTION
+========================================================== */
+#experience {
+    position: relative;
+    overflow: hidden;
+    padding: 120px 0;
+}
+
+/* ==========================================================
+   TIMELINE CONTAINER
+========================================================== */
+.experience-timeline {
+    position: relative;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 30px;
+}
+
+/* Vertical timeline line */
+.experience-timeline::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 90px;
+    width: 2px;
+
+    background: linear-gradient(
+        to bottom,
+        rgba(0, 212, 255, 0.35),
+        rgba(124, 58, 237, 0.25)
+    );
+
+    box-shadow:
+        0 0 20px rgba(0, 212, 255, 0.15);
+}
+
+/* ==========================================================
+   EXPERIENCE CARD
+========================================================== */
+.experience-card {
+    position: relative;
+    display: flex;
+    gap: 34px;
+
+    margin-bottom: 60px;
+    padding-left: 150px;
+
+    opacity: 0;
+    transform: translateY(40px);
+    filter: blur(6px);
+
+    transition:
+        transform 0.8s ease,
+        opacity 0.8s ease,
+        filter 0.8s ease;
+}
+
+.experience-card.experience-visible {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+}
+
+/* Timeline dot */
+.experience-dot {
+    position: absolute;
+    left: 82px;
+    top: 55px;
+
+    width: 18px;
+    height: 18px;
+
+    border-radius: 50%;
+
+    background: linear-gradient(
+        135deg,
+        #00d4ff,
+        #7c3aed
+    );
+
+    box-shadow:
+        0 0 20px rgba(0, 212, 255, 0.35),
+        0 0 40px rgba(124, 58, 237, 0.20);
+}
+/* ==========================================================
+   EXPERIENCE SECTION CSS - PART 2 OF 3
+   Logo, Content Card, and Typography
+========================================================== */
+
+/* ==========================================================
+   COMPANY LOGO
+========================================================== */
+.experience-logo {
+    flex-shrink: 0;
+
+    width: 110px;
+    height: 110px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+    overflow: hidden;
+
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+
+    box-shadow:
+        inset 0 0 20px rgba(255, 255, 255, 0.02),
+        0 12px 35px rgba(0, 212, 255, 0.06);
+
+    transition: all 0.45s ease;
+}
+
+.experience-logo img {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    object-position: center;
+    border-radius: 50%;
+}
+
+/* ==========================================================
+   CONTENT CARD
+========================================================== */
+.experience-content {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+
+    padding: 36px 40px;
+    border-radius: 32px;
+
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.10);
+
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+
+    box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.22),
+        0 0 35px rgba(0, 212, 255, 0.03);
+
+    transition:
+        transform 0.5s ease,
+        box-shadow 0.5s ease,
+        border-color 0.5s ease;
+}
+
+/* Premium hover glow */
+.experience-card:hover .experience-content {
+    transform: translateY(-8px);
+
+    border-color: rgba(0, 212, 255, 0.35);
+
+    box-shadow:
+        0 0 40px rgba(0, 212, 255, 0.14),
+        0 0 80px rgba(124, 58, 237, 0.10),
+        0 30px 80px rgba(0, 0, 0, 0.28),
+        inset 0 0 30px rgba(255, 255, 255, 0.03);
+}
+
+.experience-card:hover .experience-logo {
+    transform: scale(1.06);
+}
+
+/* ==========================================================
+   TYPOGRAPHY
+========================================================== */
+.experience-badge {
+    display: inline-block;
+    padding: 8px 18px;
+    margin-bottom: 18px;
+
+    border-radius: 999px;
+
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.4px;
+    color: #ffffff;
+
+    background: linear-gradient(135deg, #06b6d4, #7c3aed);
+}
+
+.experience-role {
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1.3;
+    margin-bottom: 10px;
+    color: #ffffff;
+}
+
+.experience-company {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--accent-1);
+    margin-bottom: 22px;
+}
+/* ==========================================================
+   EXPERIENCE SECTION CSS - PART 3 OF 3
+   Bullet Points, Responsive Design, and JavaScript
+========================================================== */
+
+/* ==========================================================
+   DESCRIPTION POINTS
+========================================================== */
+.experience-points {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.experience-points li {
+    position: relative;
+    padding-left: 28px;
+    margin-bottom: 14px;
+
+    line-height: 1.9;
+    color: var(--text-secondary);
+}
+
+/* Custom bullet */
+.experience-points li::before {
+    content: "▹";
+    position: absolute;
+    left: 0;
+    top: 0;
+
+    color: #00d4ff;
+    font-weight: 700;
+}
+
+/* Remove margin from last point */
+.experience-points li:last-child {
+    margin-bottom: 0;
+}
+
+/* ==========================================================
+   RESPONSIVE DESIGN
+========================================================== */
+@media (max-width: 992px) {
+    .experience-timeline {
+        padding: 0 20px;
+    }
+
+    .experience-timeline::before {
+        left: 34px;
+    }
+
+    .experience-card {
+        padding-left: 70px;
+        gap: 20px;
+    }
+
+    .experience-dot {
+        left: 26px;
+        top: 42px;
+    }
+
+    .experience-logo {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .experience-content {
+        padding: 30px 24px;
+        border-radius: 28px;
+    }
+
+    .experience-role {
+        font-size: 1.55rem;
+    }
+
+    .experience-company {
+        font-size: 1rem;
+    }
+
+    .experience-points li {
+        line-height: 1.8;
+        padding-left: 24px;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ==========================================================
+   CONTACT SECTION CSS - PART 1 OF 3
+   Section Layout and Main Glass Cards
+========================================================== */
+
+/* ==========================================================
+   CONTACT SECTION
+========================================================== */
+#contact {
+    position: relative;
+    overflow: hidden;
+    padding: 120px 0;
+}
+
+/* ==========================================================
+   CONTACT GRID
+========================================================== */
+.contact-grid {
+    max-width: 1500px;
+    margin: 0 auto;
+    padding: 0 30px;
+
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 36px;
+    align-items: stretch;
+}
+
+/* Tablet & Mobile */
+@media (max-width: 992px) {
+    .contact-grid {
+        grid-template-columns: 1fr;
+        padding: 0 20px;
+        gap: 30px;
+    }
+}
+
+/* ==========================================================
+   MAIN GLASS CARDS
+========================================================== */
+.contact-info-card,
+.contact-social-card {
+    position: relative;
+    overflow: hidden;
+
+    padding: 42px 40px;
+    border-radius: 32px;
+
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.10);
+
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+
+    box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.22),
+        0 0 35px rgba(0, 212, 255, 0.03);
+
+    transition:
+        transform 0.5s ease,
+        box-shadow 0.5s ease,
+        border-color 0.5s ease,
+        opacity 0.8s ease,
+        filter 0.8s ease;
+}
+
+/* Premium hover glow */
+.contact-info-card:hover,
+.contact-social-card:hover {
+    transform: translateY(-12px) scale(1.01);
+
+    border-color: rgba(0, 212, 255, 0.35);
+
+    box-shadow:
+        0 0 40px rgba(0, 212, 255, 0.16),
+        0 0 80px rgba(124, 58, 237, 0.10),
+        0 30px 80px rgba(0, 0, 0, 0.30),
+        inset 0 0 30px rgba(255, 255, 255, 0.03);
+}
+
+/* Glossy reflection */
+.contact-info-card::before,
+.contact-social-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+
+    background: linear-gradient(
+        120deg,
+        rgba(255, 255, 255, 0.08),
+        rgba(255, 255, 255, 0.02) 35%,
+        transparent 60%
+    );
+
+    pointer-events: none;
+}
+/* ==========================================================
+   CONTACT SECTION CSS - PART 2 OF 3
+   Typography, Contact Items, and Social Buttons
+========================================================== */
+
+/* ==========================================================
+   CARD TYPOGRAPHY
+========================================================== */
+.contact-card-title {
+    position: relative;
+    z-index: 1;
+
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1.3;
+
+    margin-bottom: 16px;
+    color: #ffffff;
+}
+
+.contact-card-text {
+    position: relative;
+    z-index: 1;
+
+    font-size: 1rem;
+    line-height: 1.9;
+
+    color: var(--text-secondary);
+    margin-bottom: 34px;
+}
+
+/* ==========================================================
+   CONTACT ITEMS
+========================================================== */
+.contact-items {
+    position: relative;
+    z-index: 1;
+
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+
+    padding: 18px 20px;
+    border-radius: 22px;
+
+    text-decoration: none;
+    color: inherit;
+
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+
+    transition: all 0.35s ease;
+}
+
+.contact-item:hover {
+    transform: translateX(8px);
+
+    border-color: rgba(0, 212, 255, 0.25);
+
+    box-shadow:
+        0 0 25px rgba(0, 212, 255, 0.08);
+}
+
+/* Icon bubble */
+.contact-icon {
+    width: 56px;
+    height: 56px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
+    flex-shrink: 0;
+}
+
+.contact-icon i {
+    font-size: 1.3rem;
+    color: #00d4ff;
+}
+
+/* Text */
+.contact-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.contact-label {
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+
+    color: rgba(148, 163, 184, 0.9);
+    margin-bottom: 4px;
+}
+
+.contact-value {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #ffffff;
+}
+
+/* ==========================================================
+   SOCIAL BUTTONS
+========================================================== */
+.social-buttons {
+    position: relative;
+    z-index: 1;
+
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.social-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+
+    padding: 18px 24px;
+    border-radius: 20px;
+
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: 600;
+
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
+    transition: all 0.35s ease;
+}
+
+.social-btn:hover {
+    transform: translateY(-4px);
+    border-color: rgba(0, 212, 255, 0.28);
+
+    box-shadow:
+        0 0 30px rgba(0, 212, 255, 0.10),
+        0 0 50px rgba(124, 58, 237, 0.06);
+}
+
+.social-btn i {
+    font-size: 1.25rem;
+}
+/* ==========================================================
+   CONTACT SECTION CSS - PART 3 OF 3
+   Button Gradients, Scroll Animation, Responsive Design,
+   and JavaScript
+========================================================== */
+
+/* ==========================================================
+   BUTTON GRADIENTS
+========================================================== */
+.linkedin-btn {
+    background: linear-gradient(
+        135deg,
+        rgba(10, 102, 194, 0.20),
+        rgba(10, 102, 194, 0.08)
+    );
+}
+
+.github-btn {
+    background: linear-gradient(
+        135deg,
+        rgba(99, 102, 241, 0.18),
+        rgba(99, 102, 241, 0.08)
+    );
+}
+
+.resume-btn {
+    background: linear-gradient(
+        135deg,
+        rgba(0, 212, 255, 0.18),
+        rgba(124, 58, 237, 0.08)
+    );
+}
+
+/* ==========================================================
+   SCROLL ENTRANCE ANIMATION
+========================================================== */
+.contact-info-card,
+.contact-social-card {
+    opacity: 0;
+    transform: translateY(40px);
+    filter: blur(6px);
+}
+
+.contact-info-card.contact-visible,
+.contact-social-card.contact-visible {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+}
+
+/* ==========================================================
+   RESPONSIVE DESIGN
+========================================================== */
+@media (max-width: 768px) {
+    .contact-info-card,
+    .contact-social-card {
+        padding: 30px 24px;
+        border-radius: 28px;
+    }
+
+    .contact-card-title {
+        font-size: 1.55rem;
+    }
+
+    .contact-card-text {
+        line-height: 1.8;
+        margin-bottom: 28px;
+    }
+
+    .contact-item {
+        padding: 16px 18px;
+        gap: 14px;
+    }
+
+    .contact-icon {
+        width: 50px;
+        height: 50px;
+    }
+
+    .contact-value {
+        font-size: 0.95rem;
+        word-break: break-word;
+    }
+
+    .social-btn {
+        padding: 16px 20px;
+    }
+}
+
+.footer {
+    text-align: center;
+    padding: 40px 20px;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
