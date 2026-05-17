@@ -617,3 +617,15 @@ document.addEventListener("DOMContentLoaded", function () {
     /* Run once on page load */
     updateSectionTheme();
 });
+
+
+
+
+// ==========================================
+// SMOOTH PAGE FADE-IN
+// ==========================================
+window.addEventListener("load", () => {
+    requestAnimationFrame(() => {
+        document.body.classList.add("page-loaded");
+    });
+});

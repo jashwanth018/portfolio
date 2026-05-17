@@ -3236,3 +3236,20 @@ body {
     text-rendering: optimizeLegibility;
 }
 
+/* ==========================================
+   SMOOTH PAGE FADE-IN (NO LOADER)
+========================================== */
+
+
+
+
+/* Hide page initially */
+body {
+    opacity: 0;
+    transition: opacity 0.8s ease-in-out;
+}
+
+/* Show page when fully loaded */
+body.page-loaded {
+    opacity: 1;
+}
