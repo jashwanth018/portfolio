@@ -620,12 +620,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
-
 // ==========================================
-// SMOOTH PAGE FADE-IN
+// DELAYED PAGE FADE-IN
 // ==========================================
 window.addEventListener("load", () => {
-    requestAnimationFrame(() => {
+    // Keep the page hidden while the browser finishes rendering
+    setTimeout(() => {
         document.body.classList.add("page-loaded");
-    });
+    }, 2000); // 2 seconds delay
 });

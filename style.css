@@ -3236,20 +3236,29 @@ body {
     text-rendering: optimizeLegibility;
 }
 
+
 /* ==========================================
-   SMOOTH PAGE FADE-IN (NO LOADER)
-========================================== */
-
-
-
+   DELAYED PAGE FADE-IN TO HIDE FLICKERING
+   ========================================== */
 
 /* Hide page initially */
 body {
     opacity: 0;
-    transition: opacity 0.8s ease-in-out;
+    transition: opacity 1.2s ease-in-out;
 }
 
-/* Show page when fully loaded */
+/* Show page after loading delay */
 body.page-loaded {
     opacity: 1;
 }
+
+/* ==========================================
+   TEMPORARY TEST: DISABLE ALL ANIMATIONS
+   ========================================== */
+
+/* *,
+*::before,
+*::after {
+    animation: none !important;
+    transition: none !important;
+} */
