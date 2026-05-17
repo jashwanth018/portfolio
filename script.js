@@ -620,12 +620,40 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
-// ==========================================
-// DELAYED PAGE FADE-IN
-// ==========================================
+// ==========================================================
+// FREEZE BACKGROUND PARTICLES COMPLETELY
+// ----------------------------------------------------------
+// Add this at the VERY END of your script.js file.
+// This removes all particle movement by clearing inline
+// animation, transition, and transform styles.
+// ==========================================================
+
 window.addEventListener("load", () => {
-    // Keep the page hidden while the browser finishes rendering
-    setTimeout(() => {
-        document.body.classList.add("page-loaded");
-    }, 2000); // 2 seconds delay
+    // Select all possible particle elements
+    const particles = document.querySelectorAll(
+        '.particle, .star, .background-particle, .floating-dot, [class*="particle"], [class*="star"]'
+    );
+
+    particles.forEach((particle) => {
+        // Stop CSS animations
+        particle.style.animation = "none";
+
+        // Stop CSS transitions
+        particle.style.transition = "none";
+
+        // Remove movement transforms
+        particle.style.transform = "none";
+
+        // Keep particles visible as static dots
+        particle.style.opacity = "0.5";
+
+        // Prevent future repaint hints
+        particle.style.willChange = "auto";
+    });
+
+    // Also freeze pseudo-random updates if any script uses requestAnimationFrame
+    // by overriding the common update function pattern (safe no-op).
+    if (window.updateParticles) {
+        window.updateParticles = function () {};
+    }
 });

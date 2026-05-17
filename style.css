@@ -1214,6 +1214,13 @@ body {
             #2b0f5c 100%
         );
 }
+/* ==========================================================
+   SMOOTH COLOR PROGRESSION FOR FINAL SECTIONS
+   ----------------------------------------------------------
+   These colors are carefully adjusted so each section blends
+   naturally into the next while preserving your dark cosmic
+   blue-purple theme.
+========================================================== */
 
 /* ==========================================================
    ABOUT SECTION
@@ -1236,9 +1243,7 @@ body.theme-about {
 
 /* ==========================================================
    EDUCATION SECTION
-   Emerald-cyan aurora with violet accents
 ========================================================== */
-/* EDUCATION SECTION */
 body.theme-education {
     background-image:
         radial-gradient(circle at 8% 10%, rgba(0, 212, 255, 0.22), rgba(0, 212, 255, 0.08), transparent 35%),
@@ -1255,12 +1260,16 @@ body.theme-education {
             #4c1d95 100%
         );
 }
-/* PROJECTS SECTION */
+
+/* ==========================================================
+   PROJECTS SECTION
+   Slightly richer purple than Education
+========================================================== */
 body.theme-projects {
     background-image:
         radial-gradient(circle at 8% 10%, rgba(0, 212, 255, 0.22), rgba(0, 212, 255, 0.08), transparent 35%),
         radial-gradient(circle at 35% 35%, rgba(37, 99, 235, 0.14), rgba(37, 99, 235, 0.04), transparent 45%),
-        radial-gradient(circle at 88% 82%, rgba(168, 85, 247, 0.24), rgba(168, 85, 247, 0.08), transparent 40%),
+        radial-gradient(circle at 88% 82%, rgba(168, 85, 247, 0.22), rgba(168, 85, 247, 0.07), transparent 40%),
         radial-gradient(circle at 78% 42%, rgba(99, 102, 241, 0.10), rgba(99, 102, 241, 0.03), transparent 45%),
         radial-gradient(circle at 22% 85%, rgba(14, 165, 233, 0.08), rgba(14, 165, 233, 0.02), transparent 45%),
         linear-gradient(
@@ -1268,46 +1277,94 @@ body.theme-projects {
             #020617 0%,
             #031a3a 25%,
             #05234d 50%,
-            #0b1745 75%,
-            #4c1d95 100%
+            #0c1648 75%,
+            #5221a8 100%
         );
 }
 
-/* EXPERIENCE SECTION */
+/* ==========================================================
+   EXPERIENCE SECTION
+   Slightly deeper and more professional
+========================================================== */
 body.theme-experience {
     background-image:
-        radial-gradient(circle at 8% 10%, rgba(0, 212, 255, 0.22), rgba(0, 212, 255, 0.08), transparent 35%),
-        radial-gradient(circle at 35% 35%, rgba(37, 99, 235, 0.14), rgba(37, 99, 235, 0.04), transparent 45%),
-        radial-gradient(circle at 88% 82%, rgba(99, 102, 241, 0.18), rgba(99, 102, 241, 0.05), transparent 40%),
-        radial-gradient(circle at 78% 42%, rgba(168, 85, 247, 0.10), rgba(168, 85, 247, 0.03), transparent 45%),
-        radial-gradient(circle at 22% 85%, rgba(14, 165, 233, 0.08), rgba(14, 165, 233, 0.02), transparent 45%),
-        linear-gradient(
-            135deg,
-            #020617 0%,
-            #031a3a 25%,
-            #05234d 50%,
-            #0b1745 75%,
-            #4c1d95 100%
-        );
-}
+        radial-gradient(circle at 8% 10%,
+            rgba(0, 212, 255, 0.22),
+            rgba(0, 212, 255, 0.08),
+            transparent 35%),
 
-/* CONTACT SECTION */
-body.theme-contact {
-    background-image:
-        radial-gradient(circle at 8% 10%, rgba(0, 212, 255, 0.22), rgba(0, 212, 255, 0.08), transparent 35%),
-        radial-gradient(circle at 35% 35%, rgba(37, 99, 235, 0.14), rgba(37, 99, 235, 0.04), transparent 45%),
-        radial-gradient(circle at 88% 82%, rgba(168, 85, 247, 0.24), rgba(168, 85, 247, 0.08), transparent 40%),
-        radial-gradient(circle at 78% 42%, rgba(99, 102, 241, 0.10), rgba(99, 102, 241, 0.03), transparent 45%),
-        radial-gradient(circle at 22% 85%, rgba(14, 165, 233, 0.08), rgba(14, 165, 233, 0.02), transparent 45%),
+        radial-gradient(circle at 35% 35%,
+            rgba(37, 99, 235, 0.14),
+            rgba(37, 99, 235, 0.04),
+            transparent 45%),
+
+        /* Reduced purple intensity */
+        radial-gradient(circle at 88% 82%,
+            rgba(139, 92, 246, 0.12),
+            rgba(139, 92, 246, 0.03),
+            transparent 40%),
+
+        radial-gradient(circle at 78% 42%,
+            rgba(99, 102, 241, 0.10),
+            rgba(99, 102, 241, 0.03),
+            transparent 45%),
+
+        radial-gradient(circle at 22% 85%,
+            rgba(14, 165, 233, 0.08),
+            rgba(14, 165, 233, 0.02),
+            transparent 45%),
+
         linear-gradient(
             135deg,
             #020617 0%,
             #031a3a 25%,
             #05234d 50%,
             #071035 75%,
-            #320c5a 100%
+            #1e3a8a 100%
         );
 }
+/* ==========================================================
+   CONTACT SECTION
+   Final elegant purple finish
+========================================================== */
+body.theme-contact {
+    background-image:
+        radial-gradient(circle at 8% 10%,
+            rgba(0, 212, 255, 0.22),
+            rgba(0, 212, 255, 0.08),
+            transparent 35%),
+
+        radial-gradient(circle at 35% 35%,
+            rgba(37, 99, 235, 0.14),
+            rgba(37, 99, 235, 0.04),
+            transparent 45%),
+
+        /* Reduced purple intensity */
+        radial-gradient(circle at 88% 82%,
+            rgba(139, 92, 246, 0.12),
+            rgba(139, 92, 246, 0.03),
+            transparent 40%),
+
+        radial-gradient(circle at 78% 42%,
+            rgba(99, 102, 241, 0.10),
+            rgba(99, 102, 241, 0.03),
+            transparent 45%),
+
+        radial-gradient(circle at 22% 85%,
+            rgba(14, 165, 233, 0.08),
+            rgba(14, 165, 233, 0.02),
+            transparent 45%),
+
+        linear-gradient(
+            135deg,
+            #020617 0%,
+            #031a3a 25%,
+            #05234d 50%,
+            #071035 75%,
+            #1e3a8a 100%
+        );
+}
+
 /* Hide the circular moon button completely */
 .theme-toggle,
 .dark-mode-toggle,
@@ -3183,6 +3240,7 @@ body.theme-contact {
     font-size: 0.9rem;
     color: var(--text-secondary);
 }
+
 /* ==========================================
    PERFORMANCE & FLICKER FIX
    ========================================== */
@@ -3236,22 +3294,95 @@ body {
     text-rendering: optimizeLegibility;
 }
 
+/* ==========================================================
+   FREEZE ALL BACKGROUND PARTICLES (FINAL FIX)
+   ----------------------------------------------------------
+   Paste this at the VERY END of your style.css file.
+   This will stop every particle from moving, even if the
+   animation is applied through inline styles or pseudo-elements.
+========================================================== */
 
-/* ==========================================
-   DELAYED PAGE FADE-IN TO HIDE FLICKERING
-   ========================================== */
+/* Common particle elements */
+.particle,
+.star,
+.background-particle,
+.floating-dot,
+[class*="particle"],
+[class*="star"] {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+    will-change: auto !important;
+}
 
-/* Hide page initially */
+/* Pseudo-elements used by some particle effects */
+.particle::before,
+.particle::after,
+.star::before,
+.star::after,
+.background-particle::before,
+.background-particle::after,
+.floating-dot::before,
+.floating-dot::after,
+[class*="particle"]::before,
+[class*="particle"]::after,
+[class*="star"]::before,
+[class*="star"]::after {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+}
+
+/* If particles are inside a dedicated container */
+#particles,
+#particles-js,
+.particles,
+.particles-container,
+.background-animation {
+    animation: none !important;
+}
+
+/* Keep particles visible as static dots */
+.particle,
+.star,
+.background-particle,
+.floating-dot,
+[class*="particle"],
+[class*="star"] {
+    opacity: 0.5 !important;
+}
+/* ==========================================================
+   FREEZE COSMIC STAR BACKGROUND
+   ----------------------------------------------------------
+   This stops the moving starfield while keeping all stars
+   visible as static background particles.
+========================================================== */
+
+/* Stop the pseudo-element star layers */
+.background-blobs::before,
+.background-blobs::after,
+.stars,
+.stars-1,
+.stars-2,
+.stars-3 {
+    animation: none !important;
+    transform: none !important;
+    transition: none !important;
+    will-change: auto !important;
+    opacity: 0.85 !important;
+}
+
+/* Stop twinkling in the tech-network overlay */
+body::before {
+    animation: none !important;
+    transition: none !important;
+}
+
+/* Stop the animated gradient background */
 body {
-    opacity: 0;
-    transition: opacity 1.2s ease-in-out;
+    animation: none !important;
+    background-size: 100% 100% !important;
 }
-
-/* Show page after loading delay */
-body.page-loaded {
-    opacity: 1;
-}
-
 /* ==========================================
    TEMPORARY TEST: DISABLE ALL ANIMATIONS
    ========================================== */
