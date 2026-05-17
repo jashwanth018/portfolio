@@ -549,8 +549,8 @@ main {
     background: var(--card-bg);
     border: 1px solid var(--card-border);
 
-    backdrop-filter: blur(24px);
-    -webkit-backdrop-filter: blur(24px);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
 
     box-shadow: var(--shadow);
     transition: var(--transition);
@@ -587,8 +587,8 @@ main {
     background: var(--card-bg);
     border: 1px solid var(--card-border);
 
-    backdrop-filter: blur(24px);
-    -webkit-backdrop-filter: blur(24px);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
 
     box-shadow: var(--shadow);
 
@@ -665,8 +665,8 @@ main {
     background: var(--card-bg);
     border: 1px solid var(--card-border);
 
-    backdrop-filter: blur(24px);
-    -webkit-backdrop-filter: blur(24px);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
 
     box-shadow: var(--shadow);
     transition: var(--transition);
@@ -807,8 +807,8 @@ main {
     background: rgba(255, 255, 255, 0.06);
     border: 1px solid rgba(255, 255, 255, 0.12);
 
-    backdrop-filter: blur(24px);
-    -webkit-backdrop-filter: blur(24px);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
 
     box-shadow:
         0 20px 60px rgba(0, 0, 0, 0.20),
@@ -1456,8 +1456,8 @@ body.theme-contact {
     background: rgba(255, 255, 255, 0.06);
     border: 1px solid rgba(255, 255, 255, 0.12);
 
-    backdrop-filter: blur(24px);
-    -webkit-backdrop-filter: blur(24px);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
 
     box-shadow:
         0 20px 60px rgba(0, 0, 0, 0.22),
@@ -1794,8 +1794,8 @@ body.theme-contact {
     background: rgba(255, 255, 255, 0.06);
     border: 1px solid rgba(255, 255, 255, 0.10);
 
-    backdrop-filter: blur(24px);
-    -webkit-backdrop-filter: blur(24px);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
 
     box-shadow:
         0 20px 60px rgba(0, 0, 0, 0.25),
@@ -2371,8 +2371,8 @@ body.theme-contact {
     background: rgba(255, 255, 255, 0.06);
     border: 1px solid rgba(255, 255, 255, 0.10);
 
-    backdrop-filter: blur(24px);
-    -webkit-backdrop-filter: blur(24px);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
 
     box-shadow:
         0 20px 60px rgba(0, 0, 0, 0.22),
@@ -2661,8 +2661,8 @@ body.theme-contact {
     background: rgba(255, 255, 255, 0.06);
     border: 1px solid rgba(255, 255, 255, 0.10);
 
-    backdrop-filter: blur(24px);
-    -webkit-backdrop-filter: blur(24px);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
 
     box-shadow:
         0 20px 60px rgba(0, 0, 0, 0.22),
@@ -2886,8 +2886,8 @@ body.theme-contact {
     background: rgba(255, 255, 255, 0.06);
     border: 1px solid rgba(255, 255, 255, 0.10);
 
-    backdrop-filter: blur(24px);
-    -webkit-backdrop-filter: blur(24px);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
 
     box-shadow:
         0 20px 60px rgba(0, 0, 0, 0.22),
@@ -3182,4 +3182,56 @@ body.theme-contact {
     padding: 40px 20px;
     font-size: 0.9rem;
     color: var(--text-secondary);
+}
+/* ==========================================
+   PERFORMANCE & FLICKER FIX
+   ========================================== */
+
+/* Enable GPU acceleration */
+.hero-image,
+.hero-content,
+.navbar,
+.profile-image,
+.profile-container,
+section,
+.card,
+.project-card {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    will-change: transform;
+}
+
+/* Prevent image flickering */
+img {
+    backface-visibility: hidden;
+    transform: translateZ(0);
+}
+
+/* Improve fixed navbar rendering */
+.navbar {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+}
+
+/* Reduce heavy blur effects for better performance */
+.glass,
+.hero-card,
+.project-card,
+.education-card,
+.certificate-card,
+.navbar {
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+/* Smooth scrolling optimization */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Prevent horizontal overflow */
+body {
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
 }
